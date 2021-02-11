@@ -40,6 +40,13 @@ namespace csi281 {
     // Suggest using the facilities in STL <random>
     int *randomIntArray(const int length, const int min, const int max) {
         // YOUR CODE HERE
+        int* newArr = new int[length];//generates new array of given length
+        for (int x = 0; x < length; x++) {
+            newArr[x] = rand() % (max - min) + min; //populates each index with a random number ranging from min to max
+        }
+        return newArr;
+        delete[] newArr;
+
     }
     
     // Finds the speed of linear versus binary search
@@ -67,11 +74,24 @@ namespace csi281 {
         // Put the result in a variable linearSearchSpeed
         
         // YOUR CODE HERE
-        
+        using namespace std::chrono;
+        auto linStart = duration_cast< nanoseconds >(system_clock::now().time_since_epoch()).count();
+        for (int testKeyIndex = 0; testKeyIndex < numTests; testKeyIndex++) {
+            linearSearch(testArray, length, testKeys[testKeyIndex]);
+        }
+        auto linEnd = duration_cast<nanoseconds>(system_clock::now().time_since_epoch()).count();
+        nanoseconds linearSearchSpeed = (nanoseconds)linEnd - (nanoseconds)linStart;//finds speed by taknig difference between end and start time
         // Do numTests binary searches and find the average time
         // Put the result in a variable binarySearchSpeed
-        
         // YOUR CODE HERE
+        using namespace std::chrono;
+        auto binStart = duration_cast<nanoseconds>(system_clock::now().time_since_epoch()).count();
+        sort(testArray,(testArray+length));
+        for (int testKeyIndex = 0; testKeyIndex < numTests; testKeyIndex++) {
+            binarySearch(testArray, length, testKeys[testKeyIndex]);
+        }
+        auto binEnd = duration_cast<nanoseconds>(system_clock::now().time_since_epoch()).count();
+        nanoseconds binarySearchSpeed =  (nanoseconds)binEnd - (nanoseconds)binStart;//finds speed by taknig difference between end and start time
         
         
         delete testArray;

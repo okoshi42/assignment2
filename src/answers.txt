@@ -1,0 +1,15 @@
+1.O(n)
+2. O(2n+2(n*log(n))+n^2)
+
+3.
+10000 elements
+linear: 5*10000=50000
+sorting algorithm: 12*10000*log(10000)=1680000
+binary=10* log(10000)=14 (rounded up)=140
+1680000/50000=33(rounded down)
+50000*34=1700000
+140*34=4760
+4760+1680000>1700000
+you would need to search 34 times for binary to be more efficient.
+
+4. array, vector, linkedlist

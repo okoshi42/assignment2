@@ -36,6 +36,12 @@ namespace csi281 {
     template <typename T>
     int linearSearch(T array[], const int length, const T key) {
         // YOUR CODE HERE
+        for (int index = 0; index < length; index++) {//goes through each index until it finds a matching value
+            if (array[index] == key) {
+                return index;
+            }
+        }
+        return -1;//returns -1 if end of index is reached without a matching value
     }
     
     // Returns the first location of the found key
@@ -43,6 +49,22 @@ namespace csi281 {
     template <typename T>
     int binarySearch(T array[], const int length, const T key) {
         // YOUR CODE HERE
+        int rBound = length-1;//standard non-recursive binary search
+        int lBound = 0;
+        while (lBound<=rBound) {
+                int index = (lBound+rBound) / 2;//finds the midpoint
+                if (array[index]==key) {
+                    return index;
+                }
+                else if (array[index]<key) {
+                    lBound = index + 1;//sets left bound one ahead of the midpoint
+                }
+                else  {
+                    rBound = index - 1;//sets right bound one behind the midpoint
+                }
+            }
+            return -1;   
+  
     }
 }
 
